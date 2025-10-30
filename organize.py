@@ -8,7 +8,7 @@ def classify_files(directory,extensions,organize):
     source_directory = directory
     destination_base = os.path.join(source_directory, 'sorted')
     
-    now = datetime.now().strftime("%Y%m%d%H%M%S")
+    now = datetime.now().strftime("%Y%m%d")
     folder_name = 'backup' + str(now)
     backup_directory = os.path.join(source_directory, folder_name)
     
