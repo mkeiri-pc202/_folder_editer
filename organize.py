@@ -35,59 +35,72 @@ def group_by(source_directory, filename,destination_base,organize):
     if os.path.isfile(file_path):
         # ファイルのメタデータから作成日を取得
         if organize == "date":
-            date_folder = date(file_path)
+            date(file_path,destination_base)
+            
         elif organize == "extension":
-            date_folder = extension(file_path)
+            extension(file_path,destination_base)
+            
         elif organize == "date_and_extension":
             date_and_extension(file_path,destination_base)
+            
         elif organize == "extension_and_date":
-            date_and_extension(file_path,destination_base)
-        
-        if organize in ("date","extension"):
-            # 分類先のフォルダパスを生成
-            destination_folder = os.path.join(destination_base, date_folder)
-            
-            # 分類先のフォルダが存在しない場合は作成
-            if not os.path.exists(destination_folder):
-                os.makedirs(destination_folder)
-            
-            # ファイルを移動
-            shutil.move(file_path, destination_folder)
-            print(f'Moved: {file_path} -> {destination_folder}')
-        
-def date(file_path):
-    creation_time = os.path.getctime(file_path)
-    date_folder = datetime.fromtimestamp(creation_time).strftime('%Y-%m-%d')
-    return date_folder
+            extension_and_date(file_path,destination_base)
 
-def extension(file_path):
-    date_folder = os.path.splitext(file_path)[1]
-    return date_folder
+        
+def date(file_path,destination_base):
+    date_folder = data_organize(file_path)
+    destination_folder = create_folder(destination_base,date_folder)
+    move_file(file_path,destination_folder) 
+
+def extension(file_path,destination_base):
+    date_folder = extension_organize(file_path)
+    destination_folder = create_folder(destination_base,date_folder)
+    move_file(file_path,destination_folder)   
 
 def date_and_extension(file_path,destination_base):
+    date_folder = data_organize(file_path)
+    destination_folder = create_folder(destination_base,date_folder)
+    destination_base = destination_folder
+    date_folder = extension_organize(file_path)
+    destination_folder = create_folder(destination_base,date_folder)
+    move_file(file_path,destination_folder)
+    
+def extension_and_date(file_path,destination_base):
+    date_folder = extension_organize(file_path)
+    destination_folder = create_folder(destination_base,date_folder)
+    destination_base = destination_folder
+    date_folder = data_organize(file_path)
+    destination_folder = create_folder(destination_base,date_folder)
+    move_file(file_path,destination_folder)   
+
+#######################################
+
+def data_organize(file_path):
+    # 日付をフォルダ名にする
     creation_time = os.path.getctime(file_path)
     date_folder = datetime.fromtimestamp(creation_time).strftime('%Y-%m-%d')
-    destination_folder = os.path.join(destination_base, date_folder)
-    if not os.path.exists(destination_folder):
-        os.makedirs(destination_folder)
-    destination_base = destination_folder
+    return date_folder
+
+def extension_organize(file_path):
+    # 拡張子をフォルダ名にする
     date_folder = os.path.splitext(file_path)[1]
-    
+    return date_folder    
+
+def create_folder(destination_base,date_folder):
     # 分類先のフォルダパスを生成
     destination_folder = os.path.join(destination_base, date_folder)
-        
     # 分類先のフォルダが存在しない場合は作成
     if not os.path.exists(destination_folder):
         os.makedirs(destination_folder)
-        
-    # ファイルを移動
+    return destination_folder
+
+def move_file(file_path,destination_folder):
+    # 指定先のフォルダへファイルを移動する
     shutil.move(file_path, destination_folder)
+    # ログを書き込みたいがひとまずprintで対応する
     print(f'Moved: {file_path} -> {destination_folder}')
-    return
     
 # スクリプトの実行
 if __name__ == '__main__':
     source_directory = "C:\\temp"
-    classify_files(source_directory,[".jpeg",".png",".jpg",".gif",".bmp"],"date_and_extension")
-    # result = os.listdir(source_directory)
-    # print(result)
+    classify_files(source_directory,[".jpeg",".png",".jpg",".gif",".bmp"],"extension_and_date")
