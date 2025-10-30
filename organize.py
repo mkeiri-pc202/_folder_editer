@@ -2,6 +2,18 @@ import os
 import shutil
 from datetime import datetime
 
+import logging
+
+logger = logging.getLogger(__name__)  # モジュールごとの logger
+logger.setLevel(logging.INFO)         # INFO レベル以上を出力
+
+# コンソールに表示する下処理
+ch = logging.StreamHandler()
+ch.setLevel(logging.INFO)
+formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
+ch.setFormatter(formatter)
+logger.addHandler(ch)
+
 
 # ファイルを分類する関数
 def classify_files(directory,extensions,organize):
@@ -17,9 +29,9 @@ def classify_files(directory,extensions,organize):
         # バックアップフォルダが存在している場合は取得しない
         if not os.path.isdir(backup_directory):
             shutil.copytree(source_directory, backup_directory)
-    #ファイルがないか同じ日付のバックアップがあれば警告を出したい（とりあえずはprintを出して空のreturnで終了)
+    #ファイルがないか同じ日付のバックアップがあれば警告
     else:
-        print('対象のフォルダにファイルがない')
+        logger.warning('対象のフォルダにファイルがない')
         return
     
     # 拡張子がjsonの指定と一致したファイルについて処理を行う。一致しない場合はcontinueで処理を飛ばす。
@@ -29,6 +41,7 @@ def classify_files(directory,extensions,organize):
         else:
             group_by(source_directory, filename,destination_base,organize)
 
+    
 # ファイルの処理
 def group_by(source_directory, filename,destination_base,organize):
     file_path = os.path.join(source_directory, filename)
@@ -77,7 +90,7 @@ def extension_and_date(file_path,destination_base):
 
 def data_organize(file_path):
     # 日付をフォルダ名にする
-    creation_time = os.path.getctime(file_path)
+    creation_time = os.path.getmtime(file_path)
     date_folder = datetime.fromtimestamp(creation_time).strftime('%Y-%m-%d')
     return date_folder
 
@@ -98,7 +111,7 @@ def move_file(file_path,destination_folder):
     # 指定先のフォルダへファイルを移動する
     shutil.move(file_path, destination_folder)
     # ログを書き込みたいがひとまずprintで対応する
-    print(f'Moved: {file_path} -> {destination_folder}')
+    logger.info(f'Moved: {file_path} -> {destination_folder}')
     
 # スクリプトの実行
 if __name__ == '__main__':

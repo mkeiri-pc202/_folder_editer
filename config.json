@@ -1,11 +1,6 @@
 {
     "config":{
-        "extension":[".jpeg",".png",".jpg",".gif",".bmp"],
-        "option1":[true,false]
-    },
-    "priority_options":{
-        "1：日付→拡張子の順番でファイルを移動": "date",
-        "2：拡張子→日付の順番でファイルを移動": "extension"
+        "extension":[".jpeg",".png",".jpg",".gif",".bmp"]
     },
     "organize_options": {
         "1：日付ごとに振り分け": "date",
@@ -15,9 +10,6 @@
     },
     "options":{
         "path": "C:/temp",
-        "priority":"1：日付→拡張子の順番でファイルを移動", 
-        "organize":"2：拡張子ごとに振り分け",
-        "option1":true
-
+        "organize":"1：日付ごとに振り分け"
     }
 }
