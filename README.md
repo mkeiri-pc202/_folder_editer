@@ -25,6 +25,8 @@
 ---
 
 ## 5. ユーザーインターフェース（UI / UX）
+<img width="820" height="520" alt="Image" src="https://github.com/user-attachments/assets/d8160a20-f3f0-4adb-bf6e-e4724341586e" />
+
 - tkinterを使用して作成した
 ### 5.1 起動方法
 - distフォルダ内のexeを実行する。（Jsonファイルもexeと同じフォルダ内の入れること）
@@ -32,7 +34,7 @@
 ---
 
 ## 6. 内部設計（アーキテクチャ）
-<img width="820" height="420" alt="Image" src="https://github.com/user-attachments/assets/d8160a20-f3f0-4adb-bf6e-e4724341586e" />
+
 
 - モジュール構成
   - app.py(tkinterの画面構成、ログ出力用のキューの作成）
