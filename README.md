@@ -32,6 +32,8 @@
 ---
 
 ## 6. 内部設計（アーキテクチャ）
+<img width="1120" height="720" alt="Image" src="https://github.com/user-attachments/assets/d8160a20-f3f0-4adb-bf6e-e4724341586e" />
+
 - モジュール構成
   - app.py(tkinterの画面構成、ログ出力用のキューの作成）
   - config.json(初期値の設定およびコンボボックスのマスタ）
