@@ -1,0 +1,15 @@
+{
+    "config":{
+        "extension":[".jpeg",".png",".jpg",".gif",".bmp"]
+    },
+    "organize_options": {
+        "1：日付ごとに振り分け": "date",
+        "2：拡張子ごとに振り分け": "extension",
+        "3：日付＋拡張子を参照": "date_and_extension",
+        "4：拡張子＋日付を参照": "extension_and_date"
+    },
+    "options":{
+        "path": "C:/temp",
+        "organize":"1：日付ごとに振り分け"
+    }
+}
