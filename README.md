@@ -3,7 +3,7 @@
 バージョン: 1.0  
 作成日: [2025/10/20]  
 作成者: [作成者名 / 松本経理ビジネス専門学校 Team A ]  
-リポジトリ: [mkeiri-pc202/_server_monitoring](https://github.com/mkeiri-pc202/_folder_editer.git)
+リポジトリ: (https://github.com/mkeiri-pc202/_folder_editer.git)
 
 
 ---
