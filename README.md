@@ -35,22 +35,22 @@
 - モジュール構成
   - app.py(tkinterの画面構成、ログ出力用のキューの作成）
   - config.json(初期値の設定およびコンボボックスのマスタ）
-  
-     {
+    
+     {  
     "config":{
         "extension":[".jpeg",".png",".jpg",".gif",".bmp"] # 移動の対象となるファイルの拡張子
     },
-    "organize_options": {
-        "1：日付ごとに振り分け": "date",
-        "2：拡張子ごとに振り分け": "extension",
-        "3：日付＋拡張子を参照": "date_and_extension",
-        "4：拡張子＋日付を参照": "extension_and_date"
-    },
-    "options":{
-        "path": "C:/temp",　 # 実行用のフォルダの初期値（都合にあわせて変えてください
-        "organize":"1：日付ごとに振り分け"　# 振り分け方法の初期値（都合にあわせて変えてください
-    }
-}
+    "organize_options": {  
+        "1：日付ごとに振り分け": "date",  
+        "2：拡張子ごとに振り分け": "extension",  
+        "3：日付＋拡張子を参照": "date_and_extension",  
+        "4：拡張子＋日付を参照": "extension_and_date"  
+    },  
+    "options":{  
+        "path": "C:/temp",　 # 実行用のフォルダの初期値（都合にあわせて変えてください  
+        "organize":"1：日付ごとに振り分け"　# 振り分け方法の初期値（都合にあわせて変えてください  
+    }  
+}  
     
   - configuration.py(Jsonファイル処理用のプログラム）
   - helpers.py(フォルダ選択用のプログラム)
